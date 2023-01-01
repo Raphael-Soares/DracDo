@@ -8,5 +8,7 @@
     }
     input {
         @include input;
+        background-color: $foreground;
+        outline: 1px solid $current-line;
     }
 }

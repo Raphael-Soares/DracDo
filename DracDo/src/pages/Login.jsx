@@ -1,7 +1,5 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
-
-import Input from "../components/Input";
 import "../styles/Login.scss";
 
 function Login() {
@@ -9,11 +7,16 @@ function Login() {
     return (
         <main className="login">
             <section>
-                <h1>Entre na sua conta DracDo</h1>
+                <h1>Entre na sua consta DracDo</h1>
                 <form action="">
-                    <Input name="email" id="email" label="Email*" type="email" />
-                    <Input name="senha" id="senha" label="Senha*" type="password" />
-
+                    <span>
+                        <label htmlFor="email">Email*</label>
+                        <input type="email" name="email" id="email" />
+                    </span>
+                    <span>
+                        <label htmlFor="senha">Senha*</label>
+                        <input type="password" name="senha" id="senha" />
+                    </span>
                     <p>* campos obrigatórios</p>
                     <div className="btn-group">
                         <button

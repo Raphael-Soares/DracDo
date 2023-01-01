@@ -1,12 +1,16 @@
-import React from "react";
+import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import "../styles/Login.scss";
 
 function Registro() {
+    const [senha, setSenha] = useState("");
+    const [confirmSenha, setConfirmSenha] = useState("");
+
     const navigate = useNavigate();
     return (
-        <main>
+        <main className="login">
             <section>
+                {senha === confirmSenha ? <p>invalid</p> : null}
                 <h1>Crie sua conta DracDo</h1>
                 <form action="">
                     <span>
@@ -14,7 +18,7 @@ function Registro() {
                         <input type="email" name="email" id="email" />
                     </span>
                     <span>
-                        <label htmlFor="senha">Senha*</label>
+                        <label htmlFor="senha">Senha*{senha}</label>
                         <input type="password" name="senha" id="senha" />
                     </span>
                     <span>

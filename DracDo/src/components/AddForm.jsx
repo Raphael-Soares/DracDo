@@ -1,5 +1,7 @@
 import React from "react";
 
+import "../styles/components/AddForm.scss";
+
 function AddForm() {
     return (
         <section className="add-form">
