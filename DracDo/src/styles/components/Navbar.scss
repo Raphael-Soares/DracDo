@@ -1,0 +1,86 @@
+@import "../Variables";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    background-color: $current-line;
+    height: 100px;
+    width: 100%;
+    max-height: 100px;
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+
+    .add-btn {
+        $size: 60px;
+        height: $size;
+        width: $size;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        border-radius: 50%;
+        border: none;
+        position: relative;
+        color: $foreground;
+        background-color: $pink;
+        left: calc(50% - 30px);
+        &:hover {
+            transition: 0.5s ease;
+            background-color: $purple;
+            cursor: pointer;
+        }
+    }
+
+    .dropdown {
+        position: absolute;
+        right: 30px;
+        display: inline-block;
+        font-size: 2rem;
+        color: $foreground;
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: $current-line;
+            min-width: 160px;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            font-size: 1rem;
+
+            a {
+                color: $foreground;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+            .red {
+                color: $red;
+            }
+            a:hover {
+                background-color: $background;
+
+                &:first-child {
+                    border-radius: 5px 5px 0 0;
+                }
+                &:last-child {
+                    border-radius: 0 0 5px 5px;
+                }
+            }
+        }
+
+        &:hover .dropdown-content {
+            display: block;
+        }
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

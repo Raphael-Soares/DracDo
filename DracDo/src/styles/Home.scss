@@ -1,0 +1,23 @@
+@import "./Variables.scss";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.home {
+    main {
+        background-color: $background;
+        min-height: calc(100vh - 100px);
+    }
+
+    .drac {
+        height: calc(100vh - 100px);
+        background-image: url("../assets/drac.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 500px;
+        opacity: 0.1;
+    }
+}
