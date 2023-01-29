@@ -79,11 +79,11 @@ function App() {
     const {tasks, pending, completed, search} = useContext(TasksContext);
 
     const pendingTasks = useMemo(() => {
-        return tasks.filter((task) => !task.completed);
+        return tasks.filter((task) => !task.done);
     }, [tasks]);
 
     const completedTasks = useMemo(() => {
-        return tasks.filter((task) => task.completed);
+        return tasks.filter((task) => task.done);
     }, [tasks]);
 
     const filteredTasks = useMemo(() => {

@@ -1,5 +1,8 @@
 import {createContext, useState, useEffect} from "react";
 
+import axios from "axios";
+const API_URL = "http://localhost:5050";
+
 export const TasksContext = createContext();
 
 export const TasksProvider = ({children}) => {
@@ -8,6 +11,17 @@ export const TasksProvider = ({children}) => {
     const [pending, setPending] = useState(false);
     const [completed, setCompleted] = useState(false);
     const [search, setSearch] = useState("");
+
+    useEffect(() => {
+        axios
+            .get(`${API_URL}/api/tasks`)
+            .then((res) => {
+                setTasks(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
 
     function pendingMarked() {
         setPending(!pending);
@@ -25,33 +39,25 @@ export const TasksProvider = ({children}) => {
         setSearch("");
     }
 
-    function createTask(title) {
-        setTasks([
-            ...tasks,
-            {
-                id: parseInt(Math.random() * 300),
-                title,
-                completed: false,
-            },
-        ]);
+    async function createTask(title) {
+        const newTask = {
+            title,
+            done: false,
+        };
+
+        const res = await axios.post(`${API_URL}/api/tasks`, newTask);
+        setTasks([...tasks, res.data]);
     }
 
-    function deleteTask(id) {
+    async function deleteTask(id) {
+        await axios.delete(`${API_URL}/api/tasks/${id}`);
         setTasks(tasks.filter((task) => task.id !== id));
     }
 
-    function markCompleteTask(id) {
-        setTasks(
-            tasks.map((task) => {
-                if (task.id === id) {
-                    return {
-                        ...task,
-                        completed: !task.completed,
-                    };
-                }
-                return task;
-            })
-        );
+    async function markCompleteTask(id) {
+        await axios.patch(`${API_URL}/api/tasks/${id}`);
+
+        setTasks(tasks.map((task) => (task.id === id ? {...task, done: !task.done} : task)));
     }
 
     return (

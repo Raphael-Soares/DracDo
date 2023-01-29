@@ -23,7 +23,7 @@ function ProgressBar() {
     const {tasks} = useContext(TasksContext);
 
     const progress = useMemo(() => {
-        const completedTasks = tasks.filter((task) => task.completed);
+        const completedTasks = tasks.filter((task) => task.done);
         return (completedTasks.length / tasks.length) * 100;
     }, [tasks]);
 
