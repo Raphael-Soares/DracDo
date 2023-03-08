@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import { keyframes } from "styled-components";
-
-import { useState } from "react";
 
 import { AiFillMinusCircle, AiFillCheckCircle } from "react-icons/ai";
 
@@ -27,15 +24,6 @@ const TaskItem = styled.div`
     }
 `;
 
-const slideIn = keyframes`
-    from {
-        transform: translateX(100%);
-    }
-    to {
-        transform: translateX(0);
-    }
-`;
-
 const ButtonGroup = styled.div`
     display: inline-flex;
     position: relative;
@@ -43,8 +31,11 @@ const ButtonGroup = styled.div`
     opacity: 0;
     z-index: 1;
 
+    transition: 0.2s ease;
+    transform: translateX(100%);
+
     ${TaskItem}:hover & {
-        animation: ${slideIn} 0.2s linear;
+        transform: translateX(0);
         opacity: 1;
     }
 `;
