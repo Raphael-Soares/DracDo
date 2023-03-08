@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import {useContext, useMemo} from "react";
-import {TasksContext} from "../contexts/Tasks";
+import { useMemo } from "react";
 
 const Parent = styled.div`
     width: 100%;
@@ -19,9 +18,7 @@ const Child = styled.div`
     transition: width 0.5s ease;
 `;
 
-function ProgressBar() {
-    const {tasks} = useContext(TasksContext);
-
+function ProgressBar({ tasks }) {
     const progress = useMemo(() => {
         const completedTasks = tasks.filter((task) => task.done);
         return (completedTasks.length / tasks.length) * 100;
@@ -29,7 +26,7 @@ function ProgressBar() {
 
     return (
         <Parent>
-            <Child style={{width: `${progress}%`}} />
+            <Child style={{ width: `${progress}%` }} />
         </Parent>
     );
 }

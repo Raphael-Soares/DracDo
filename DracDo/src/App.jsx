@@ -1,5 +1,4 @@
-import {useContext, useMemo} from "react";
-import {TasksContext} from "./contexts/Tasks";
+import { useState, useEffect, useMemo } from "react";
 
 import styled from "styled-components";
 
@@ -76,7 +75,47 @@ const Tasks = styled.div`
 `;
 
 function App() {
-    const {tasks, pending, completed, search} = useContext(TasksContext);
+    const [tasks, setTasks] = useState([]);
+    const [pending, setPending] = useState(true);
+    const [completed, setCompleted] = useState(false);
+    const [search, setSearch] = useState("");
+
+    function pendingMarked() {
+        setPending(true);
+        setCompleted(false);
+    }
+
+    function completedMarked() {
+        setPending(false);
+        setCompleted(true);
+    }
+
+    function createTask(title) {
+        const newTask = {
+            id: Date.now(),
+            title,
+            done: false,
+        };
+
+        setTasks([...tasks, newTask]);
+    }
+
+    function deleteTask(id) {
+        const newTasks = tasks.filter((task) => task.id !== id);
+
+        setTasks(newTasks);
+    }
+
+    function markCompleteTask(id) {
+        const newTasks = tasks.map((task) => {
+            if (task.id === id) {
+                task.done = !task.done;
+            }
+            return task;
+        });
+
+        setTasks(newTasks);
+    }
 
     const pendingTasks = useMemo(() => {
         return tasks.filter((task) => !task.done);
@@ -90,22 +129,41 @@ function App() {
         return tasks.filter((task) => task.title.toLowerCase().includes(search.toLowerCase()));
     }, [tasks, search]);
 
-    const whichTasks = pending ? pendingTasks : completed ? completedTasks : filteredTasks;
+    const whichTasks = useMemo(() => {
+        return search.length > 0 ? filteredTasks : pending ? pendingTasks : completedTasks;
+    }, [pending, completed, pendingTasks, completedTasks, filteredTasks, search]);
 
     return (
         <Background>
             <Container>
                 <Head>
                     <DateHeader />
-                    <ProgressBar />
+                    <ProgressBar tasks={tasks} />
 
-                    <Search />
-                    <AddTask />
+                    <Search
+                        search={search}
+                        setSearch={setSearch}
+                        pending={pending}
+                        completed={completed}
+                        pendingMarked={pendingMarked}
+                        completedMarked={completedMarked}
+                    />
+                    <AddTask createTask={createTask} />
                 </Head>
                 <Tasks>
-                    <List tasks={whichTasks} />
+                    <List
+                        tasks={whichTasks}
+                        markCompleteTask={markCompleteTask}
+                        deleteTask={deleteTask}
+                    />
                 </Tasks>
-                <Messages completedTasks={completedTasks} searchLength={whichTasks.length} />
+                <Messages
+                    clearFilters={() => setSearch("")}
+                    search={search}
+                    completed={completed}
+                    completedTasks={completedTasks}
+                    searchLength={whichTasks.length}
+                />
             </Container>
         </Background>
     );

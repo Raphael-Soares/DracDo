@@ -1,9 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import {createGlobalStyle} from "styled-components";
-
-import {TasksProvider} from "./contexts/Tasks";
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
  * {
@@ -18,9 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <TasksProvider>
-            <GlobalStyle />
-            <App />
-        </TasksProvider>
+        <GlobalStyle />
+        <App />
     </React.StrictMode>
 );

@@ -1,9 +1,8 @@
-import {useContext, useState} from "react";
-import {TasksContext} from "../contexts/Tasks";
+import { useState } from "react";
 
 import styled from "styled-components";
 
-import {MdAddCircle} from "react-icons/md";
+import { MdAddCircle } from "react-icons/md";
 
 const Container = styled.div`
     display: flex;
@@ -44,8 +43,7 @@ const Add = styled(MdAddCircle)`
     font-size: 20px;
 `;
 
-function AddTask() {
-    const {createTask} = useContext(TasksContext);
+function AddTask({ createTask }) {
     const [input, setInput] = useState("");
 
     function handleAddTask() {
@@ -58,7 +56,11 @@ function AddTask() {
 
     return (
         <Container>
-            <Input placeholder="Add a new item..." value={input} onChange={(e) => setInput(e.target.value)} />
+            <Input
+                placeholder="Add a new item..."
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+            />
             <Button onClick={handleAddTask}>
                 <Add />
             </Button>

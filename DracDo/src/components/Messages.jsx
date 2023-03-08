@@ -1,6 +1,3 @@
-import {useContext} from "react";
-import {TasksContext} from "../contexts/Tasks";
-
 import styled from "styled-components";
 
 const Message = styled.p`
@@ -12,19 +9,22 @@ const Underline = styled.span`
     cursor: pointer;
 `;
 
-function Messages(props) {
-    const {clearFilters, completed, search} = useContext(TasksContext);
+function Messages({ searchLength, completedTasks, clearFilters, completed, search }) {
     return (
         <div>
-            {search.length > 0 && props.searchLength == 0 ? (
+            {search.length > 0 && searchLength == 0 ? (
                 <Message>
-                    Your search found no results. <Underline onClick={clearFilters}>Clear the filter here</Underline> to see all items
+                    Your search found no results.{" "}
+                    <Underline onClick={clearFilters}>Clear the filter here</Underline> to see all
+                    items
                 </Message>
             ) : (
-                props.completedTasks.length == 0 &&
+                completedTasks.length == 0 &&
                 completed && (
                     <Message>
-                        There is no items marked as done. <Underline onClick={clearFilters}>Clear the filter here</Underline> to see all items
+                        There is no items marked as done.{" "}
+                        <Underline onClick={clearFilters}>Clear the filter here</Underline> to see
+                        all items
                     </Message>
                 )
             )}

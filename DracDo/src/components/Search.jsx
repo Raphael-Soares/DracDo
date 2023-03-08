@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-import {useContext, useState} from "react";
-import {TasksContext} from "../contexts/Tasks";
+import { useState } from "react";
 
 import SearchBar from "./SearchBar";
 import FilterButton from "./FilterButton";
@@ -29,8 +28,7 @@ const ButtonGroup = styled.div`
     align-items: center;
 `;
 
-function Search() {
-    const {pendingMarked, completedMarked, completed, pending} = useContext(TasksContext);
+function Search({ search, setSearch, pendingMarked, completedMarked, completed, pending }) {
     return (
         <SearchContainer>
             <ButtonGroup>
@@ -38,7 +36,7 @@ function Search() {
                 <FilterButton text="Pending" action={pendingMarked} active={pending} />
             </ButtonGroup>
 
-            <SearchBar />
+            <SearchBar search={search} setSearch={setSearch} />
         </SearchContainer>
     );
 }

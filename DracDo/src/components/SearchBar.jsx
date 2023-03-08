@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import {MdSearch} from "react-icons/md";
+import { MdSearch } from "react-icons/md";
 
-import {useContext} from "react";
-import {TasksContext} from "../contexts/Tasks";
+import { useState } from "react";
 
 const SearchBarContainer = styled.div`
     display: flex;
@@ -32,13 +31,16 @@ const SearchBarIcon = styled.div`
     color: #848484;
 `;
 
-function SearchBar() {
-    const {setSearch, search} = useContext(TasksContext);
+function SearchBar({ setSearch, search }) {
     return (
         <SearchBarContainer>
-            <SearchBarInput placeholder="Search items" value={search} onChange={(e) => setSearch(e.target.value)} />
+            <SearchBarInput
+                placeholder="Search items"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+            />
             <SearchBarIcon>
-                <MdSearch size="24px" style={{color: "#848484"}} />
+                <MdSearch size="24px" style={{ color: "#848484" }} />
             </SearchBarIcon>
         </SearchBarContainer>
     );

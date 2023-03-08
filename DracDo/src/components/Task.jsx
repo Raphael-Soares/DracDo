@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import {keyframes} from "styled-components";
+import { keyframes } from "styled-components";
 
-import {useContext, useState} from "react";
-import {TasksContext} from "../contexts/Tasks";
+import { useState } from "react";
 
-import {AiFillMinusCircle, AiFillCheckCircle} from "react-icons/ai";
+import { AiFillMinusCircle, AiFillCheckCircle } from "react-icons/ai";
 
 const TaskItem = styled.div`
     width: 100%;
@@ -72,9 +71,7 @@ const AddButton = styled(Button)`
     background: #50fa7b;
 `;
 
-function Task({task}) {
-    const {deleteTask, markCompleteTask} = useContext(TasksContext);
-
+function Task({ task, deleteTask, markCompleteTask }) {
     return (
         <TaskItem>
             {task.title}
