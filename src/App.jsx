@@ -19,8 +19,8 @@ const Background = styled.main`
 
 const Container = styled.section`
     background-color: #f8f8f2;
-    width: 800px;
-    height: 650px;
+    width: 60dvw;
+    height: 90dvh;
     border-radius: 4px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     padding: 60px;
