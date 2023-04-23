@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 const Header = styled.header`
@@ -22,20 +22,20 @@ const SideContainer = styled.div`
 const Day = styled.div`
     text-align: left;
 
-    font-size: 70px;
+    font-size: 4em;
 
     height: auto;
 `;
 const Month = styled.div`
     text-align: left;
 
-    font-size: 24px;
+    font-size: 1.5em;
 `;
 const Year = styled.div`
     text-align: left;
     font-family: "Roboto light";
 
-    font-size: 24px;
+    font-size: 1.5em;
     font-weight: thin;
 `;
 
@@ -45,16 +45,16 @@ const WeekDay = styled.div`
     letter-spacing: 0px;
 
     opacity: 1;
-    font-size: 24px;
+    font-size: 2em;
 `;
 function DateHeader() {
     const date = new window.Date();
 
     const [day, month, year, weekDay] = [
         date.getDate(),
-        date.toLocaleString("en-us", {month: "short"}),
+        date.toLocaleString("en-us", { month: "short" }),
         date.getFullYear(),
-        date.toLocaleString("en-us", {weekday: "long"}),
+        date.toLocaleString("en-us", { weekday: "long" }),
     ];
 
     return (
